@@ -12,7 +12,7 @@ int main() {
     // criação das variáveis com atributos da cidade
     char estado;
     char codigo[4];
-    char nome[15];
+    char nome[32];
     int populacao;
     float area;
     float PIB;
@@ -21,7 +21,7 @@ int main() {
     // Criação das variáveis da carta 2
         char estado2;
     char codigo2[4];
-    char nome2[15];
+    char nome2[32];
     int populacao2;
     float area2;
     float PIB2;
@@ -35,13 +35,13 @@ int main() {
     printf("Cadastro da carta 1 \n");
 
     printf("Informe o estado: \n");
-    scanf("%c", &estado);
+    scanf(" %c", &estado);
 
     printf("Informe o código: \n");
-    scanf("%s", &codigo);
+    scanf("%s", codigo);
 
     printf("Informe o nome: \n");
-    scanf("%s", &nome);
+    scanf(" %31[^\n]", nome);
 
     printf("Informe a população: \n");
     scanf("%d", &populacao);
@@ -63,10 +63,10 @@ int main() {
     scanf(" %c", &estado2);
 
     printf("Informe o código: \n");
-    scanf("%s", &codigo2);
+    scanf("s", &codigo2);
 
     printf("Informe o nome: \n");
-    scanf("%s", &nome2);
+    scanf(" %31[^\n]", &nome2);
 
     printf("Informe a população: \n");
     scanf("%d", &populacao2);
