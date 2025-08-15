@@ -67,17 +67,10 @@ int main() {
     scanf(" %c", &estado2);
 
     printf("Informe o código: \n");
-<<<<<<< HEAD
     scanf("%s", codigo2);
 
     printf("Informe o nome: \n");
     scanf(" %31[^\n]", nome2);
-=======
-    scanf("s", &codigo2);
-
-    printf("Informe o nome: \n");
-    scanf(" %31[^\n]", &nome2);
->>>>>>> 8af365bf645f032103b6a2e5ec1ec9d7c9225dec
 
     printf("Informe a população: \n");
     scanf("%d", &populacao2);
