@@ -5,6 +5,22 @@
 // Este código inicial serve como base para o desenvolvimento do sistema de cadastro de cartas de cidades.
 // Siga os comentários para implementar cada parte do desafio.
 
+//
+float calcSuperPoder(unsigned long int pop, float area, float pib, int pontos, float denspop, float ppc){
+
+    float resultado = (float)pop + area + pib + (float)pontos + (1/denspop) + ppc;
+    return resultado;
+}
+
+int comparaAtributo(float carta1, float carta2){
+    if (carta1>carta2){
+        printf("Carta 1 venceu (1) \n");
+    }
+    else{
+        printf("Carta 2 venceu (0) \n");
+    }
+    return 0;
+}
 int main() {
     // Sugestão: Defina variáveis separadas para cada atributo da cidade.
     // Exemplos de atributos: código da cidade, nome, população, área, PIB, número de pontos turísticos.
@@ -13,23 +29,25 @@ int main() {
     char estado;
     char codigo[4];
     char nome[32];
-    int populacao;
+    unsigned long int populacao;
     float area;
     float PIB;
     int pontosTuristicos;
     float denspop; // Densidade Populacional
     float PPC; // Pib per capita
+    float superPoder = 0;
 
     // Criação das variáveis da carta 2
         char estado2;
     char codigo2[4];
     char nome2[32];
-    int populacao2;
+    unsigned long int populacao2;
     float area2;
     float PIB2;
     int pontosTuristicos2;
     float denspop2; 
     float PPC2;
+    float superPoder2;
     
     // Cadastro das Cartas:
     // Sugestão: Utilize a função scanf para capturar as entradas do usuário para cada atributo.
@@ -48,7 +66,7 @@ int main() {
     scanf(" %31[^\n]", nome);
 
     printf("Informe a população: \n");
-    scanf("%d", &populacao);
+    scanf("%lu", &populacao);
 
     printf("Informe a área: \n");
     scanf("%f", &area);
@@ -73,7 +91,7 @@ int main() {
     scanf(" %31[^\n]", nome2);
 
     printf("Informe a população: \n");
-    scanf("%d", &populacao2);
+    scanf("%lu", &populacao2);
 
     printf("Informe a área: \n");
     scanf("%f", &area2);
@@ -86,12 +104,16 @@ int main() {
 
     // Calculos de Densidade Populacional e PIB per capita das cartas
 
-    denspop = (float) populacao / area;
-    PPC = (float) (PIB * 1000000000) / populacao;
+    denspop = (float)populacao / area;
+    PPC = (PIB * 1000000000) / (float)populacao;
 
-    denspop2 = (float) populacao2 / area2;
-    PPC2 = (float) (PIB2 * 1000000000) / populacao2;
+    denspop2 = (float)populacao2 / area2;
+    PPC2 = (PIB2 * 1000000000) / (float)populacao2;
     
+    // Atribuição do cálculo do atributo Super Poder
+
+    superPoder = calcSuperPoder(populacao, area, PIB, pontosTuristicos, denspop, PPC);
+    superPoder2 = calcSuperPoder(populacao2, area2, PIB2, pontosTuristicos2, denspop2, PPC2);
     // Exibição dos Dados das Cartas:
     // Sugestão: Utilize a função printf para exibir as informações das cartas cadastradas de forma clara e organizada.
     // Exiba os valores inseridos para cada atributo da cidade, um por linha.
@@ -103,7 +125,7 @@ int main() {
 
     printf("Nome: %s\n", nome);
 
-    printf("População: %d habitantes\n", populacao);
+    printf("População: %lu habitantes\n", populacao);
 
     printf("Área: %.2f km2\n", area);
 
@@ -115,6 +137,8 @@ int main() {
 
     printf("PIB per Capita: R$ %.2f \n", PPC);
 
+    printf("Super Poder: R$ %.2f \n", superPoder);
+
     // Impressão carta 2
     printf("\nAtributos da carta 2 \n");
 
@@ -124,7 +148,7 @@ int main() {
 
     printf("Nome: %s\n", nome2);
 
-    printf("População: %d habitantes\n", populacao2);
+    printf("População: %lu habitantes\n", populacao2);
 
     printf("Área: %.2f km2\n", area2);
 
@@ -135,6 +159,21 @@ int main() {
     printf("Densidade populacional: %.2f hab/km²\n", denspop2);
 
     printf("PIB per Capita: R$ %.2f \n", PPC2);
+
+    printf("Super Poder: R$ %.2f \n", superPoder2);
+
+    // Comparando as Cartas
+    float inversoDensidade = 1/denspop;
+    float inversoDensidade2 = 1/denspop2;
+
+    printf("Comparação de Cartas: \n ");
+    printf("População: ");  comparaAtributo(populacao,populacao2);
+    printf("Área: ");       comparaAtributo(area, area2);
+    printf("PIB: ");        comparaAtributo(PIB, PIB2);
+    printf("Pontos Turísticos: "); comparaAtributo(pontosTuristicos, pontosTuristicos2);
+    printf("Densidade Populacional: "); comparaAtributo(inversoDensidade, inversoDensidade2);
+    printf("Pib per Capita: "); comparaAtributo(PPC, PPC2);
+    printf("Super Poder: "); comparaAtributo(superPoder, superPoder2);
 
     return 0;
 }
